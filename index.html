@@ -63,11 +63,11 @@
                v-for='movie in movies'>
 
               <img :src="'https://image.tmdb.org/t/p/w500/'+ movie.poster_path" alt="">
-              <div class="title" v-if="movie.title !== searchInput">
+              <div class="title" >
                 <h3 >{{movie.title}}</h3>
                 <span  class="title">{{movie.original_title}}</span>
               </div>
-              <div class="title" v-else-if='movie.name == searchInput'>
+              <div class="name" >
                 <h3 >{{movie.name}}</h3>
                 <span  class="title">{{movie.original_name}}</span>
               </div>
