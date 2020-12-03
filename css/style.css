@@ -42,12 +42,11 @@ header img {
 
 .search_box{
   height: 30px;
-  border-radius: 5px;
   width: 60%;
-  background-color: white;
   margin-top: 20px;
   margin-right: 50px;
   padding-top: 3px;
+  border-bottom: 1px solid red;
 }
 
 .search_box input{
@@ -55,12 +54,14 @@ header img {
   width: 80%;
   margin-left: 15px;
   outline: none;
+  background-color: transparent;
+  color: white;
 }
 
 .search_box a{
   width: 10%;
   text-align: right;
-  color:#141414;
+  color:white;
 }
 
 
@@ -94,10 +95,15 @@ header img {
     font-size: 20px;
 }
 
-.movie span.language{
-    color: lightgrey;
+.movie .language{
+    height: 30px;
 }
 
-.movie span.score{
-    color: red;
+.star {
+  width: 100%;
+}
+
+.star > li{
+    color: yellow;
+    list-style: none;
 }

@@ -6,23 +6,44 @@ const boolflix = new Vue ({
   data:{
     movies:[],
     searchInput:'',
-    apiKey:'ecff05cdf4ac75835ef0849a53b9c11c',
+
+
   },
 
 
   methods: {
+    findMovies(){
+      axios.get("https://api.themoviedb.org/3/search/movie",
+        {
+          params:{
+              'api_key':'ecff05cdf4ac75835ef0849a53b9c11c',
+              language: 'it-IT',
+              query: this.searchInput,
+        }
+      })
+      .then(response =>{
+        return this.movies = response.data.results;
 
-   findMovies: function(){
-    axios.get("https://api.themoviedb.org/3/search/movie", {
-      params:{
-       'api_Key':this.apiKey,
-       query: this.searchInput,
+        return this.searchInput = '';
+      })
+    },
 
-      }
-    })
-    .then(response =>{
-      this.movies = response.data.results
-    })
+    star(n){
+      axios.get("https://api.themoviedb.org/3/search/movie",
+        {
+          params:{
+              'api_key':'ecff05cdf4ac75835ef0849a53b9c11c',
+              language: 'it-IT',
+              query: this.searchInput,
+        }
+      })
+      return this.movies.vote_average = Math.ceil(n/2)
+    },
+
+    log(e){
+      e.target.src='img/notfound.svg'
     }
+
+
   },
 });
