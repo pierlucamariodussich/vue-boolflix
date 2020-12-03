@@ -12,8 +12,12 @@ const boolflix = new Vue ({
 
 
   methods: {
+
     findMovies(){
-      axios.get("https://api.themoviedb.org/3/search/movie",
+      this.movies =[];
+
+      axios
+      .get("https://api.themoviedb.org/3/search/movie",
         {
           params:{
               'api_key':'ecff05cdf4ac75835ef0849a53b9c11c',
@@ -22,14 +26,11 @@ const boolflix = new Vue ({
         }
       })
       .then(response =>{
-        return this.movies = response.data.results;
+         this.movies = this.movies.concat(response.data.results);
+      });
 
-        return this.searchInput = '';
-      })
-    },
-
-    star(n){
-      axios.get("https://api.themoviedb.org/3/search/movie",
+      axios
+      .get("https://api.themoviedb.org/3/search/tv",
         {
           params:{
               'api_key':'ecff05cdf4ac75835ef0849a53b9c11c',
@@ -37,6 +38,16 @@ const boolflix = new Vue ({
               query: this.searchInput,
         }
       })
+      .then(response =>{
+         this.movies = this.movies.concat(response.data.results);
+
+      });
+      console.log(this.movies);
+      this.searchInput = '';
+
+    },
+
+    star(n){
       return this.movies.vote_average = Math.ceil(n/2)
     },
 

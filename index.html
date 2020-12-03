@@ -62,12 +62,19 @@
           <div class="movie d-flex justify-content-start align-items-center flex-column"
                v-for='movie in movies'>
 
-              <img :src="'https://image.tmdb.org/t/p/w500/'+ movie.backdrop_path" alt="">
-              <h3>{{movie.title}}</h3>
-              <span class="title">{{movie.original_title}}</span>
+              <img :src="'https://image.tmdb.org/t/p/w500/'+ movie.poster_path" alt="">
+              <div class="title" v-if="movie.title !== searchInput">
+                <h3 >{{movie.title}}</h3>
+                <span  class="title">{{movie.original_title}}</span>
+              </div>
+              <div class="title" v-else-if='movie.name == searchInput'>
+                <h3 >{{movie.name}}</h3>
+                <span  class="title">{{movie.original_name}}</span>
+              </div>
+
+
               <img v-on:error='log' class='language' :src=" 'img/'+ movie.original_language+'.svg'" alt="">
               <div class=" star d-flex flex-nowrap justify-content-center align-items-center">
-
                   <li v-for = 'n in star(movie.vote_average)'>
                     <i class="fas fa-star"></i>
                   </li>
