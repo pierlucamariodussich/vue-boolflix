@@ -6,8 +6,7 @@ const boolflix = new Vue ({
   data:{
     movies:[],
     searchInput:'',
-
-
+    starsEmpty:0,
   },
 
 
@@ -48,13 +47,24 @@ const boolflix = new Vue ({
     },
 
     star(n){
-      return this.movies.vote_average = Math.ceil(n/2)
+      return this.movies.vote_average = Math.ceil(n/2);
     },
+
+
+
+
 
     log(e){
       e.target.src='img/notfound.svg'
     }
 
+
+  },
+  computed:{
+    starEmpty(n){
+      return this.starsEmpty = Math.ceil(5 - (n/2));
+
+    },
 
   },
 });
